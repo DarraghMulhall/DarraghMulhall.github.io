@@ -40,7 +40,6 @@ function processAnswers(){
     var nSum = 0
     var oSum = 0
 
-
     $('input:checked').each(function(){
         var domain = qs_arr[count]["domain"]
         switch(domain){
@@ -62,9 +61,7 @@ function processAnswers(){
         }
         count++
     });
-
-    console.log(eSum + " " + aSum + " " + cSum + " " + nSum + " " + oSum)
-    var jsonObj = '{"ext":'+eSum+', "agr":'+aSum+', "con":'+cSum+', "neu":'+nSum+', "ext":'+eSum+'}'
+    var jsonObj = {"ext":eSum,"agr":aSum,"con":cSum,"neu":nSum,"opn": oSum}
     window.location = "show_results.html?" + JSON.stringify(jsonObj)
 }
 
