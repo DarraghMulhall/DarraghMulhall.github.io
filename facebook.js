@@ -9,6 +9,8 @@ function statusChangeCallback(response) {
       // Logged into your app and Facebook.
       //testAPI();
       var accessToken = response.authResponse.accessToken;
+      alert("LOGIN SUCESSFUL")
+      $('#fbook_button').hide()
       FB.api('/me/?fields=friends', function(response) {
         console.log(response + " "+ response.friends + " " + response.friends.summary.total_count);
         for(key in response) {
@@ -70,6 +72,6 @@ function statusChangeCallback(response) {
      function logout()
     {
     FB.logout(function(response) {
-        // Person is now logged out
+      $('#fbook_button').show()
      });
     }

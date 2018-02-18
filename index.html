@@ -3,9 +3,10 @@
     Informative Placeholder...
 </div>
 
-
-<fb:login-button scope="public_profile,email,user_birthday,user_friends,user_posts" onlogin="checkLoginState();">
-</fb:login-button>
+<div id="fbook_button">
+    <fb:login-button id="fbook_button" scope="public_profile,email,user_birthday,user_friends,user_posts" onlogin="checkLoginState();">
+    </fb:login-button>
+</div>
 
 <br>
 <button onclick="logout()">Log out</button>
@@ -14,4 +15,5 @@
 <br>
 <button onclick="location.href='test.html'">Proceed to test</button>
 
+<script src="jquery-3.3.1.min.js"></script>
 <script src="facebook.js"></script>
