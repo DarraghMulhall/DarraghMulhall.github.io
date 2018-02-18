@@ -22,7 +22,6 @@ function renderBarChart(results){
         },
         data: [{        
             type: "column",  
-            //showInLegend: true, 
             legendMarkerColor: "grey",
             dataPoints: [      
                 { y: results["ext"], label: "Extraversion" },

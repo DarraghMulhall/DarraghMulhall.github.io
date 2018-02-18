@@ -7,14 +7,12 @@ function renderQs(){
             var choice_cells_html = ''
 
             for(var j=0; j<5; j++){
-                    choice_cells_html += '<td>'+choice_titles[j]+'<input type="RADIO" class="Q'+(i+1)+'" name="Q'+(i+1)+'" value="'
+                    choice_cells_html += '<td style="width">'+choice_titles[j]+'<br><input type="RADIO" class="Q'+(i+1)+'" name="Q'+(i+1)+'" style="height:20px; width:20px;" value="'
                         +choices[qs_arr[i]["plus-or-minus"]][j]["score"]+'"></td>'
             }
 
-            $('#questions_table').append('<tr><td>'+qs_arr[i]["text"]+'</td>' + choice_cells_html)   
+            $('#questions_table').append('<tr><td>'+(i+1)+'.</td><td>'+qs_arr[i]["text"]+'</td>' + choice_cells_html)   
        }
-        console.log(qs_arr)
-        console.log(choices)
         $('#submit_answers').css('display', 'inline-block')
         
     });
@@ -29,6 +27,17 @@ function checkIfAllQsAnswered(){
     }
     return true
 }
+
+function getArrayOfUnansweredQs(){
+    var qs = []
+    for(var i=0; i<20; i++){
+        if(!$('.Q'+(i+1)).is(':checked')){
+            qs.push(i+1)
+        }
+    }
+    return qs
+}
+
 
 
 function processAnswers(){
@@ -70,15 +79,27 @@ function processSubmitClick(){
     $('#submit_answers').click(function() {
     if(checkIfAllQsAnswered())
         processAnswers()
-    else
-        alert("All questions must be answered")
+    else{
+        var str = ""
+        var arr = getArrayOfUnansweredQs()
+        for(var i=0; i<arr.length; i++){
+            str += arr[i] + ", "
+        }
+        str = str.substring(0, str.length - 2);
+        alert("All questions must be answered.\n\nUnanswered qs: "+str)
+    }
+        
     });
 }
 
+function main(){
+    var qs_arr = []
+    renderQs()
+    processSubmitClick()
+}
 
-var qs_arr = []
+main()
 
-renderQs()
-processSubmitClick()
+
 
 
