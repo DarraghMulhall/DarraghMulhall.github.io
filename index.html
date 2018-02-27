@@ -1,19 +1,40 @@
 
-<div id="information" style="height:800px;">
-    Informative Placeholder...
+<h1>Big Five Persoanlity Twitter Research</h1>
+
+<div id="information" style="width:600px;">
+    <p>Hello. My name is Darragh Mulhall. I am a 4th year computer scientist in University College Dublin. 
+    For my final year project, I am researching the use of social media for predicting the personality type of 
+    a user. The personality model is called the Big Five (<a target="_blank" href="https://en.wikipedia.org/wiki/Big_Five_personality_traits">See here</a>).</p>
+
+    I have made this web application to collect data from the accounts of Twitter users as well as their actual personality trait scores as determined
+    by the test provided, which will both be used in conjunction for analysis.
+
+    I would be grateful if you could provide me access to your Twitter data and complete the Big Five test provided (only 20 questions).
+    The data is actually publicly accessible to anyone who knows your username, 
+    so it would be great if you could provide me this. The data extracted includes the posts you have made, your replies and retweets, 
+    your numbers of followers and the number of users you follow, the hashtags you use, as well as the number of posts you have favourited and the number
+    of favourites people have given you. 
+    
+    <p>An important thing to note is that the data is anonymised, meaning your name is not attached to it.
+    If you are still uncomfortable with all this, you can just take the test by itself.
+    </p>
+
+    <p>By providing your username you are giving me consent to use access your Twitter Data. Thank you!</p>
+
+
+    
 </div>
 
-<div id="fbook_button">
-    <fb:login-button id="fbook_button" scope="public_profile,email,user_birthday,user_friends,user_posts" onlogin="checkLoginState();">
-    </fb:login-button>
-</div>
 
 <br>
-<button onclick="logout()">Log out</button>
+
+(Username is in the form: @username)<br><br>
+<form action="test.html" method = "get">
+   Username: <input type="text" name="username">
+   <input type="submit" value="Submit and Proceed to Test">
+</form>
 
 
-<br>
-<button onclick="location.href='test.html'">Proceed to test</button>
 
-<script src="jquery-3.3.1.min.js"></script>
-<script src="facebook.js"></script>
+<p>If you don't your Twitter data to be used, you are still welcome to take the test</p>
+<button onclick="location.href='test.html'">Proceed to Test</button>

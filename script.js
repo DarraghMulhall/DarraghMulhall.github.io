@@ -1,3 +1,16 @@
+function receiveUsername(){
+    var results = window.location.search.substring(1)
+    console.log(results + " hello")
+    var decoded = decodeURI(results)
+    console.log(decoded)
+    var index = decoded.indexOf("=")
+    var username = decoded.substring(index+1)
+    console.log(username)
+    return username
+}
+
+
+
 function renderQs(){
     $.when( $.getJSON('20qs_test.json'), $.getJSON('choice_scores.json') ).then(function( qs, choice_scores ){
         var choice_titles = ["Very Inaccurate", "Moderately Inaccurate", "Neither Accurate Nor Inaccurate", "Moderately Accurate", "Very Accurate"]
@@ -72,6 +85,23 @@ function processAnswers(){
     });
     var jsonObj = {"ext":eSum,"agr":aSum,"con":cSum,"neu":nSum,"opn": oSum}
     window.location = "show_results.html?" + JSON.stringify(jsonObj)
+
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify({"username": username, "scores": {"ext":eSum,"agr":aSum,"con":cSum,"neu":nSum,"opn": oSum}}),
+        contentType: 'application/json',
+        url: 'ec2-35-177-200-56.eu-west-2.compute.amazonaws.com:3000',						
+        success: function(data) {
+            console.log('success');
+            console.log(JSON.stringify(data));
+        }
+    });
+
+
+    // $.post("ec2-35-177-200-56.eu-west-2.compute.amazonaws.com:3000", 
+    //     {"username": username, "scores": {"ext":eSum,"agr":aSum,"con":cSum,"neu":nSum,"opn": oSum}}, function(){
+    //         console.log("success")
+    //     });
 }
 
 
@@ -93,6 +123,7 @@ function processSubmitClick(){
 }
 
 function main(){
+    receiveUsername()
     var qs_arr = []
     renderQs()
     processSubmitClick()
