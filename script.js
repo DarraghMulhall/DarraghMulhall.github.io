@@ -84,8 +84,6 @@ function processAnswers(){
         count++
     });
     var jsonObj = {"ext":eSum,"agr":aSum,"con":cSum,"neu":nSum,"opn": oSum}
-    window.location = "show_results.html?" + JSON.stringify(jsonObj)
-
     $.ajax({
         type: 'POST',
         data: JSON.stringify({"username": username, "scores": {"ext":eSum,"agr":aSum,"con":cSum,"neu":nSum,"opn": oSum}}),
@@ -96,6 +94,9 @@ function processAnswers(){
             console.log(JSON.stringify(data));
         }
     });
+    window.location = "show_results.html?" + JSON.stringify(jsonObj)
+
+    
 
 
     // $.post("ec2-35-177-200-56.eu-west-2.compute.amazonaws.com:3000", 
