@@ -89,7 +89,7 @@ function processAnswers(){
         type: 'POST',
         data: JSON.stringify({"username": username, "scores": {"ext":eSum,"agr":aSum,"con":cSum,"neu":nSum,"opn": oSum}}),
         contentType: 'application/json',
-        url: 'http://ec2-35-177-200-56.eu-west-2.compute.amazonaws.com:3000',
+        url: 'https://ec2-35-177-200-56.eu-west-2.compute.amazonaws.com:3000',
         success: function(data) {
             console.log('success');
             console.log(JSON.stringify(data));
