@@ -1,10 +1,7 @@
 function receiveResults(){
     var results = window.location.search.substring(1)
-    console.log(results)
     var decoded = decodeURI(results)
-    console.log(decoded)
     var data = JSON.parse(decoded)
-    console.log(data)
 
     return data
 }
@@ -13,7 +10,7 @@ function receiveResults(){
 function renderBarChart(results){
     var chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
-        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        theme: "light2",
         title:{
             text: "Big Five Personality Traits"
         },
@@ -35,18 +32,10 @@ function renderBarChart(results){
     chart.render()
 }
 
-function cleanURL(){
-    var uri = window.location.toString();
-    if (uri.indexOf("?") > 0) {
-        var clean_uri = uri.substring(0, uri.indexOf("?"));
-        window.history.replaceState({}, document.title, clean_uri);
-    }
-}
 
 function main(){
     var results = receiveResults()
     renderBarChart(results)
-    //cleanURL()
 }
 
 

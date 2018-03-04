@@ -1,11 +1,12 @@
 function receiveUsername(){
     var results = window.location.search.substring(1)
-    console.log(results + " hello")
     var decoded = decodeURI(results)
-    console.log(decoded)
     var index = decoded.indexOf("=")
     var username = decoded.substring(index+1)
     console.log(username)
+    if(username.charAt(0) == '@'){
+        username = username.substring(1)
+    }
     return username
 }
 
@@ -45,7 +46,7 @@ function getArrayOfUnansweredQs(){
     var qs = []
     for(var i=0; i<20; i++){
         if(!$('.Q'+(i+1)).is(':checked')){
-            qs.push(i+1)
+            qs.push("Q"+(i+1))
         }
     }
     return qs
@@ -89,22 +90,12 @@ function processAnswers(){
         type: 'POST',
         data: JSON.stringify({"username": username, "scores": {"ext":eSum,"agr":aSum,"con":cSum,"neu":nSum,"opn": oSum}}),
         contentType: 'application/json',
-        url: 'https://ec2-35-177-200-56.eu-west-2.compute.amazonaws.com:3000',
+        url: 'http://ec2-35-177-200-56.eu-west-2.compute.amazonaws.com:3000',
         success: function(data) {
-            console.log('success');
-            console.log(JSON.stringify(data));
+            window.location = "show_results.html?" + JSON.stringify(jsonObj)
         }
     });
-    console.log("jdijfig")
-   // window.location = "show_results.html?" + JSON.stringify(jsonObj)
-
     
-
-
-    // $.post("ec2-35-177-200-56.eu-west-2.compute.amazonaws.com:3000", 
-    //     {"username": username, "scores": {"ext":eSum,"agr":aSum,"con":cSum,"neu":nSum,"opn": oSum}}, function(){
-    //         console.log("success")
-    //     });
 }
 
 
@@ -126,6 +117,7 @@ function processSubmitClick(){
 }
 
 function main(){
+    receiveUsername()
     var qs_arr = []
     renderQs()
     processSubmitClick()

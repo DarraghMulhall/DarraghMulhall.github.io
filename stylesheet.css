@@ -4,7 +4,6 @@ table, td {
 
 table {
     border-spacing: 5 5px;
-    width:1200px;
 }
 
  td {
@@ -12,3 +11,14 @@ table {
      text-align: center;
      padding-right: 0px;
  }
+
+ input[type=submit] {
+    width: 40em;  
+    height: 4em;
+}
+
+#submit_answers {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    font-size: 22px;
+}
