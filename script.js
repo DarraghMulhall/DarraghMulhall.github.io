@@ -86,16 +86,19 @@ function processAnswers(){
     });
     var username = receiveUsername()
     var jsonObj = {"ext":eSum,"agr":aSum,"con":cSum,"neu":nSum,"opn": oSum}
-    $.ajax({
-        type: 'POST',
-        data: JSON.stringify({"username": username, "scores": {"ext":eSum,"agr":aSum,"con":cSum,"neu":nSum,"opn": oSum}}),
-        contentType: 'application/json',
-        url: 'https://ec2-35-177-200-56.eu-west-2.compute.amazonaws.com:3000',
-        success: function(data) {
-            window.location = "show_results.html?" + JSON.stringify(jsonObj)
-        }
-    });
     
+    //disable post as server no longer running to receive request.
+    
+//     $.ajax({
+//         type: 'POST',
+//         data: JSON.stringify({"username": username, "scores": {"ext":eSum,"agr":aSum,"con":cSum,"neu":nSum,"opn": oSum}}),
+//         contentType: 'application/json',
+//         url: 'https://ec2-35-177-200-56.eu-west-2.compute.amazonaws.com:3000',
+//         success: function(data) {
+//             window.location = "show_results.html?" + JSON.stringify(jsonObj)
+//         }
+//     });
+    window.location = "show_results.html?" + JSON.stringify(jsonObj)
 }
 
 
